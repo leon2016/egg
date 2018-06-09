@@ -1,4 +1,4 @@
-package com.leon.wx.resp;
+package com.leon.wx.message.resp;
 
 /**
  * ClassName: VideoRespMessage

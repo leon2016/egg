@@ -1,23 +1,21 @@
-package com.leon.wx.req;
+package com.leon.wx.message.resp;
 
 /**
  * ClassName: BaseMessage
  * 
- * @Description: 微信请求消息基本类
+ * @Description: 返回消息体-基本消息
  * @author wangang
  * @date 2018-06-01
  */
-public class BaseMessage {
-	// 开发者微信号
+public class BaseRespMessage {
+	// 接收方帐号（收到的 OpenID）
 	private String ToUserName;
-	// 发送方帐号（一个 OpenID）
+	// 开发者微信号
 	private String FromUserName;
 	// 消息创建时间 （整型）
 	private long CreateTime;
-	// 消息类型（text/image/location/link/video/shortvideo）
+	// 消息类型（text/music/news）
 	private String MsgType;
-	// 消息 id，64 位整型
-	private long MsgId;
 
 	public String getToUserName() {
 		return ToUserName;
@@ -51,11 +49,4 @@ public class BaseMessage {
 		MsgType = msgType;
 	}
 
-	public long getMsgId() {
-		return MsgId;
-	}
-
-	public void setMsgId(long msgId) {
-		MsgId = msgId;
-	}
 }

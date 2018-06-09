@@ -7,6 +7,25 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+
+	<!-- log4j配置 -->
+	<!-- 加载Spring框架中的log4j监听器Log4jConfigListener -->
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>egg.root</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jRefreshInterval</param-name>
+		<param-value>10000</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:META-INF/log4j.properties</param-value>
+	</context-param>
+
 	<!--加载Spring的配置文件到上下文中去 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -14,30 +33,6 @@
                 classpath:META-INF/applicationContext.xml
             </param-value>
 	</context-param>
-	<!-- log4j配置 start 加载log4j的配置文件log4j.properties -->
-	<context-param>
-		<param-name>log4jConfigLocation</param-name>
-		<param-value>classpath:META-INF/log4j.properties</param-value>
-	</context-param>
-
-	<!-- 设定刷新日志配置文件的时间间隔，这里设置为10s -->
-	<context-param>
-		<param-name>log4jRefreshInterval</param-name>
-		<param-value>10000</param-value>
-	</context-param>
-
-	<!-- 加载Spring框架中的log4j监听器Log4jConfigListener -->
-	<listener>
-		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-	</listener>
-
-	<!-- 为避免项目间冲突，定义唯一的 webAppRootKey -->
-	<context-param>
-		<param-name>webAppRootKey</param-name>
-		<param-value>egg.root</param-value>
-	</context-param>
-	<!-- log4j配置 end -->
-
 
 	<!-- spring MVC DispatcherServlet config start -->
 	<servlet>

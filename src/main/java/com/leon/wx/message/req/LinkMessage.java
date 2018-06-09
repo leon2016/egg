@@ -1,4 +1,4 @@
-package com.leon.wx.req;
+package com.leon.wx.message.req;
 
 /**
  * ClassName: LinkMessage

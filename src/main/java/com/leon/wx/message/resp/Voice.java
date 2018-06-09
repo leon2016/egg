@@ -1,13 +1,13 @@
-package com.leon.wx.resp;
+package com.leon.wx.message.resp;
 
 /**
- * ClassName: Image
+ * ClassName: Voice
  * 
- * @Description:图片回复消息体
+ * @Description: 语音消息体
  * @author wangang
  * @date 2018-06-01
  */
-public class Image {
+public class Voice {
 
 	private String MediaId;
 
