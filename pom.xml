@@ -1,103 +1,192 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.leon</groupId>
-  <artifactId>egg</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>egg Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  
-   <!-- 版本信息常量-->
-  <properties>
-    <encodeType>UTF-8</encodeType>
-    <jdkVersion>1.7</jdkVersion>
-    <mavenCompilerPluginVersion>3.1</mavenCompilerPluginVersion>
-    <mavenWarPluginVersion>2.3</mavenWarPluginVersion>
-    <jstlVersion>1.2</jstlVersion>
-    <taglibVersion>1.1.2</taglibVersion>
-    <servletVersion>2.5</servletVersion>
-    <springVersion>4.3.1.RELEASE</springVersion>
-    <hibernateVersion>4.3.5.Final</hibernateVersion>
-    
-  </properties>
-  
-  <dependencies>
-  
-    <!-- jsp页面使用的jstl支持-->
-    <dependency>
-      <groupId>jstl</groupId>
-      <artifactId>jstl</artifactId>
-      <version>${jstlVersion}</version>
-    </dependency>
-    <dependency>
-      <groupId>taglibs</groupId>
-      <artifactId>standard</artifactId>
-      <version>${taglibVersion}</version>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>${servletVersion}</version>
-      <scope>provided</scope>
-    </dependency>
-    
-     <!-- spring-->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-beans</artifactId>
-      <version>${springVersion}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-      <version>${springVersion}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <version>${springVersion}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-orm</artifactId>
-      <version>${springVersion}</version>
-    </dependency>
-    
-    <!-- spring web + spring MVC-->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
-      <version>${springVersion}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <version>${springVersion}</version>
-    </dependency>
-    
-    <!-- hibernate配置-->
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
-      <version>${hibernateVersion}</version>
-    </dependency>
-    
-    
-  </dependencies>
-  
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${mavenCompilerPluginVersion}</version>
-        <configuration>
-          <source>${jdkVersion}</source>
-          <target>${jdkVersion}</target>
-          <encoding>${encodeType}</encoding>
-        </configuration>
-      </plugin>
-    </plugins>
-    <finalName>egg</finalName>
-  </build>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.leon</groupId>
+	<artifactId>egg</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>egg Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+
+	<!-- 版本信息常量 -->
+	<properties>
+		<encodeType>UTF-8</encodeType>
+		<jdkVersion>1.7</jdkVersion>
+		<mavenCompilerPluginVersion>3.1</mavenCompilerPluginVersion>
+		<mavenWarPluginVersion>2.3</mavenWarPluginVersion>
+		<jstlVersion>1.2</jstlVersion>
+		<taglibVersion>1.1.2</taglibVersion>
+		<servletVersion>2.5</servletVersion>
+		<springVersion>4.3.1.RELEASE</springVersion>
+		<hibernateVersion>4.3.5.Final</hibernateVersion>
+		<mysqlVersion>5.1.24</mysqlVersion>
+		<c3p0Version>0.9.1.2</c3p0Version>
+
+		<fastjsonVersion>1.2.20</fastjsonVersion>
+		<apacheHttpVersion>4.4.1</apacheHttpVersion>
+		<quartzVersion>2.2.1</quartzVersion>
+		<dom4jVersion>1.6.1</dom4jVersion>
+		<xstreamVersion>1.4.7</xstreamVersion>
+		<log4jVersion>1.2.17</log4jVersion>
+	</properties>
+
+	<dependencies>
+		<!-- *****************************************springMVC+spring+hibernate基本依赖*************************************************** -->
+		<!-- jsp页面使用的jstl支持 -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstlVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>${taglibVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servletVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${springVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${springVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${springVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${springVersion}</version>
+		</dependency>
+
+		<!--quartz必须依赖 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${springVersion}</version>
+		</dependency>
+
+		<!-- spring web + spring MVC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${springVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${springVersion}</version>
+		</dependency>
+
+		<!-- hibernate配置 -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernateVersion}</version>
+		</dependency>
+
+		<!-- DataBase数据库连接 mysql包 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysqlVersion}</version>
+		</dependency>
+
+		<!-- 数据库连接池 -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>${c3p0Version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjsonVersion}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${apacheHttpVersion}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>${apacheHttpVersion}</version>
+		</dependency>
+
+		<!-- quartz定时任务插件 -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>${quartzVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz-jobs</artifactId>
+			<version>${quartzVersion}</version>
+		</dependency>
+
+		<!-- xml -->
+		<dependency>
+			<groupId>org.apache.directory.studio</groupId>
+			<artifactId>org.dom4j.dom4j</artifactId>
+			<version>${dom4jVersion}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>${xstreamVersion}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4jVersion}</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.3.2</version>
+		</dependency>
+		
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${mavenCompilerPluginVersion}</version>
+				<configuration>
+					<source>${jdkVersion}</source>
+					<target>${jdkVersion}</target>
+					<encoding>${encodeType}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>egg</finalName>
+	</build>
 </project>

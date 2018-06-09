@@ -14,6 +14,31 @@
                 classpath:META-INF/applicationContext.xml
             </param-value>
 	</context-param>
+	<!-- log4j配置 start 加载log4j的配置文件log4j.properties -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:META-INF/log4j.properties</param-value>
+	</context-param>
+
+	<!-- 设定刷新日志配置文件的时间间隔，这里设置为10s -->
+	<context-param>
+		<param-name>log4jRefreshInterval</param-name>
+		<param-value>10000</param-value>
+	</context-param>
+
+	<!-- 加载Spring框架中的log4j监听器Log4jConfigListener -->
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+
+	<!-- 为避免项目间冲突，定义唯一的 webAppRootKey -->
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>egg.root</param-value>
+	</context-param>
+	<!-- log4j配置 end -->
+
+
 	<!-- spring MVC DispatcherServlet config start -->
 	<servlet>
 		<servlet-name>DispatcherServlet</servlet-name>
@@ -21,7 +46,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<!-- 此处指向的的是SpringMVC的配置文件 -->
-			<param-value>classpath:META-INF/spring-mvc.xml</param-value>
+			<param-value>classpath:META-INF/spring-mvc.xml,classpath:META-INF/spring-quartz.xml</param-value>
 		</init-param>
 		<!--配置容器在启动的时候就加载这个servlet并实例化 -->
 		<load-on-startup>1</load-on-startup>
