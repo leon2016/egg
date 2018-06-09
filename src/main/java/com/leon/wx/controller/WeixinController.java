@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.leon.wx.constant.WeChatConstants;
+import com.leon.wx.dispatcher.EventDispatcher;
+import com.leon.wx.dispatcher.MsgDispatcher;
 import com.leon.wx.util.MessageUtil;
 import com.leon.wx.util.WechatUtils;
 
@@ -33,8 +35,10 @@ public class WeixinController {
 	@RequestMapping(value = "security", method = RequestMethod.GET)
 	@ResponseBody
 	public String doGet(String signature, String timestamp, String nonce, String echostr) {
-		logger.debug("TOKEN=" + WeChatConstants.TOKEN + ",signature=" + signature + ",timesamp" + timestamp + ",nonce=" + nonce);
-		if (StringUtils.isBlank(signature)||StringUtils.isBlank(timestamp)||StringUtils.isBlank(nonce)||StringUtils.isBlank(echostr)) {
+		logger.debug("TOKEN=" + WeChatConstants.TOKEN + ",signature=" + signature + ",timesamp" + timestamp + ",nonce="
+		        + nonce);
+		if (StringUtils.isBlank(signature) || StringUtils.isBlank(timestamp) || StringUtils.isBlank(nonce)
+		        || StringUtils.isBlank(echostr)) {
 			logger.info("参数为空！");
 			return "";
 		}
@@ -51,10 +55,15 @@ public class WeixinController {
 	 */
 	@RequestMapping(value = "security", method = RequestMethod.POST)
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
-		logger.debug("开始接收用户消息...");
+		logger.debug("消息分发...");
 		try {
 			Map<String, String> map = MessageUtil.parseXml(request);
-			System.out.println("=============================" + map.get("Content"));
+			String msgtype = map.get("MsgType");
+			if (MessageUtil.REQ_MESSAGE_TYPE_EVENT.equals(msgtype)) {
+				EventDispatcher.processEvent(map); // 进入事件处理
+			} else {
+				MsgDispatcher.processMessage(map); // 进入消息处理
+			}
 		} catch (Exception e) {
 			logger.error(e, e);
 		}

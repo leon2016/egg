@@ -4,7 +4,8 @@ package com.leon.wx.util;
  * access_token
  * 
  * @link https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140183
- * @author leon
+ * @author wangang
+ * @date 2018-06-01
  *
  */
 public class AccessToken {
