@@ -3,7 +3,7 @@ package com.leon.wx.util;
 /**
  * access_token
  * 
- * @link https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140183
+ * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140183
  * @author wangang
  * @date 2018-06-01
  *

@@ -3,13 +3,34 @@ package com.leon.wx.constant;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.leon.wx.util.WeChatTask;
+
 public class WeChatConstants {
 	public static String TOKEN = "leon";
+	public static String TIMESTAMP = "timestamp";
+	public static String ACCESS_TOKEN = "access_token";
+	public static String JSAPI_TICKET = "jsapi_ticket";
+	
+	/**微信接口URL**/
 	public static String ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token";
-	public static String APP_ID = "wxdf8387e2afcf8f85";
-	public static String APP_SECRET = "dca5644591bf0b351a988b90ea283612";
+	public static String API_TICKET_URL  = "https://api.weixin.qq.com/cgi-bin/ticket/getticket";
+	public static String OPENID_USER_INFO_URL = "https://api.weixin.qq.com/cgi-bin/user/info";
+	private static String MENU_CREATE_URL = "https://api.weixin.qq.com/cgi-bin/menu/create";
+	
+	// public static String APP_ID = "wxdf8387e2afcf8f85";
+	// public static String APP_SECRET = "dca5644591bf0b351a988b90ea283612";
+	// 测试号
+	public static String APP_ID = "wx1c6e85d9d1614619";
+	public static String APP_SECRET = "ba670721d003c4c302bdbaa75e54f936";
 
 	public static Map<String, Object> wxMap = new HashMap<String, Object>();
+
+	public static String getAccessToken() {
+		if (!wxMap.containsKey(ACCESS_TOKEN)) {
+			WeChatTask.getToken_getTicket();
+		}
+		return (String) wxMap.get(ACCESS_TOKEN);
+	}
 
 	public static String getTOKEN() {
 		return TOKEN;

@@ -9,13 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.leon.wx.constant.WeChatConstants;
 import com.leon.wx.dispatcher.EventDispatcher;
 import com.leon.wx.dispatcher.MsgDispatcher;
+import com.leon.wx.util.JsSdkConfig;
 import com.leon.wx.util.MessageUtil;
 import com.leon.wx.util.WechatUtils;
 
@@ -33,7 +36,7 @@ public class WeixinController {
 	 * @param echostr
 	 * @return
 	 */
-	@RequestMapping(value = "security", method = RequestMethod.GET)
+	@RequestMapping(value = "/security", method = RequestMethod.GET)
 	@ResponseBody
 	public String doGet(String signature, String timestamp, String nonce, String echostr) {
 		logger.debug("TOKEN=" + WeChatConstants.TOKEN + ",signature=" + signature + ",timesamp" + timestamp + ",nonce="
@@ -54,7 +57,7 @@ public class WeixinController {
 	 * @param request
 	 * @param response
 	 */
-	@RequestMapping(value = "security", method = RequestMethod.POST)
+	@RequestMapping(value = "/security", method = RequestMethod.POST)
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		logger.debug("消息分发...");
 		try {
@@ -74,5 +77,34 @@ public class WeixinController {
 		} catch (Exception e) {
 			logger.error(e, e);
 		}
+
 	}
+
+	/**
+	 * @Description: 前端获取微信 JSSDK 的配置参数
+	 * @param @param
+	 *            response
+	 * @param @param
+	 *            request
+	 * @param @param
+	 *            url
+	 * @param @throws
+	 *            Exception
+	 */
+	@RequestMapping(value = "/jssdk")
+	@ResponseBody
+	public ModelMap JSSDK_config(@RequestParam(value = "url", required = true) String url) {
+		ModelMap map = new ModelMap();
+		try {
+			logger.debug(url);
+			Map<String, String> jsdkConfigMap = JsSdkConfig.jsSDK_Sign(url);
+			map.put("jsdconfig", jsdkConfigMap);
+			map.put("status", "success");
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			map.put("status", "error");
+		}
+		return map;
+	}
+
 }
