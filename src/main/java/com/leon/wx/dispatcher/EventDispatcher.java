@@ -41,7 +41,7 @@ public class EventDispatcher {
 			try {
 				userinfo = WxUserInfoUtils.getUserInfoByOpenid(openid);
 				Article article = new Article();
-				article.setDescription("欢迎来到万刚的个人微信！"); // 图文消息的描述
+				article.setDescription("欢迎来到上海校友会APP！"); // 图文消息的描述
 				article.setPicUrl(userinfo.get("headimgurl")); // 图文消息图片地址
 				article.setTitle("尊敬的：" + userinfo.get("nickname") + ",你好！"); // 图文消息标题
 				article.setUrl("https://www.baidu.com"); // 图文 url 链接

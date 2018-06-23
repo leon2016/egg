@@ -11,9 +11,13 @@
         http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd ">
 
 	<!-- 启动注解驱动的spring MVC功能,注册请求url和注解POJO类方法的映射 -->
-	<mvc:annotation-driven />
-	<context:component-scan base-package="com.leon" />
+	<context:component-scan base-package="com.leon">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+	</context:component-scan>
 
+	<mvc:annotation-driven />
+	
 	<!-- 对模型视图名称的解析,在请求时模型视图名称添加前后缀 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

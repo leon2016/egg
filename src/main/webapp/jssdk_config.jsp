@@ -132,7 +132,7 @@
 						},
 						success : function(data) {
 							wx.config({
-								debug : true,// 开启调试模式
+								debug : false,// 开启调试模式
 								appId : data.jsdconfig.appId,
 								timestamp : data.jsdconfig.timestamp,
 								nonceStr : data.jsdconfig.nonceStr,
