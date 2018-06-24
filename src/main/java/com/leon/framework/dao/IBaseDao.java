@@ -11,6 +11,8 @@ public abstract interface IBaseDao<T> {
 
 	void delete(String id);
 
+	void merge(T entity);
+
 	void update(T entity);
 
 	int update(String hql, Object... field);
@@ -23,7 +25,7 @@ public abstract interface IBaseDao<T> {
 
 	int getTotalCount();
 
-	QueryResult<Object> findByJPQLWithPage(String hql, String countHQL, Map<String, Object> parameterMap, int pageNo,
+	QueryResult<T> findByJPQLWithPage(String hql, String countHQL, Map<String, Object> parameterMap, int pageNo,
 	        int pageSize);
 
 }

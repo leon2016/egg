@@ -6,10 +6,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 
+import com.leon.wx.constant.WeChatConstants;
 import com.leon.wx.message.resp.Article;
 import com.leon.wx.message.resp.NewsMessage;
+import com.leon.wx.model.WxUserInfo;
 import com.leon.wx.util.MessageUtil;
 import com.leon.wx.util.WxUserInfoUtils;
 
@@ -37,13 +42,12 @@ public class EventDispatcher {
 			newmsg.setFromUserName(mpid);
 			newmsg.setCreateTime(new Date().getTime());
 			newmsg.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_NEWS);
-			HashMap<String, String> userinfo;
 			try {
-				userinfo = WxUserInfoUtils.getUserInfoByOpenid(openid);
+				WxUserInfo userinfo = WxUserInfoUtils.getUserInfoByOpenid(openid);
 				Article article = new Article();
 				article.setDescription("欢迎来到上海校友会APP！"); // 图文消息的描述
-				article.setPicUrl(userinfo.get("headimgurl")); // 图文消息图片地址
-				article.setTitle("尊敬的：" + userinfo.get("nickname") + ",你好！"); // 图文消息标题
+				article.setPicUrl(userinfo.getHeadimgurl()); // 图文消息图片地址
+				article.setTitle("尊敬的：" + userinfo.getNickname() + ",你好！"); // 图文消息标题
 				article.setUrl("https://www.baidu.com"); // 图文 url 链接
 				List<Article> list = new ArrayList<Article>();
 				list.add(article); // 这里发送的是单图文，如果需要发送多图文则在这里 list 中加入多个 Article 即可！

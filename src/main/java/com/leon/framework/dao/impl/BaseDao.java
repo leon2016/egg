@@ -13,7 +13,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.leon.framework.dao.IBaseDao;
 import com.leon.framework.enums.ErrorCode;
@@ -21,14 +20,14 @@ import com.leon.framework.exception.EggException;
 import com.leon.framework.util.QueryResult;
 
 @Repository
-public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
+public abstract class BaseDao<T> implements IBaseDao<T> {
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	protected Class<T> clazz;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public BaseDaoImpl() {
+	public BaseDao() {
 		ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
 		this.clazz = (Class) type.getActualTypeArguments()[0];
 	}
@@ -48,7 +47,10 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 		Object object = (Object) getSession().get(clazz, id);
 		getSession().delete(object);
 	}
-
+	@Override
+	public void merge(T entity) {
+		getSession().merge(entity);
+	}
 	@Override
 	public void update(T entity) {
 		getSession().update(entity);
@@ -125,7 +127,7 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public QueryResult<Object> findByJPQLWithPage(String hql, String countHQL, Map<String, Object> parameterMap,
+	public QueryResult<T> findByJPQLWithPage(String hql, String countHQL, Map<String, Object> parameterMap,
 	        int pageNo, int pageSize) {
 		if (StringUtils.isBlank(hql)) {
 			throw new EggException(ErrorCode.DATA_QUERY_ERROR, "查询语句不能为空");
@@ -134,7 +136,7 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 			long count = this.countByHQL(countHQL, parameterMap);
 
 			if (count == 0) {
-				return new QueryResult<Object>(new ArrayList(), count, pageNo, pageSize);
+				return new QueryResult<T>(new ArrayList(), count, pageNo, pageSize);
 			}
 
 			if (pageNo < 1) {
@@ -151,7 +153,7 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 			// 设置查询结果的开始记录数（从0开始计数）
 			int firstResult = (pageNo - 1) * pageSize;
 			query.setFirstResult(firstResult);
-			return new QueryResult<Object>(query.list(), count, pageNo, pageSize);
+			return new QueryResult<T>(query.list(), count, pageNo, pageSize);
 		} catch (HibernateException ex) {
 			throw new EggException(ErrorCode.DATA_QUERY_ERROR, ex);
 		}
