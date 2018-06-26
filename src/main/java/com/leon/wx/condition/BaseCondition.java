@@ -11,6 +11,7 @@ public class BaseCondition {
 	private String name;
 	private Date startTime;
 	private Date endTime;
+	private String type;
 
 	public int getPageNo() {
 		return pageNo;
@@ -74,6 +75,14 @@ public class BaseCondition {
 
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

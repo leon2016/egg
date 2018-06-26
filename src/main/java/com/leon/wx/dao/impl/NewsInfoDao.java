@@ -33,7 +33,7 @@ public class NewsInfoDao extends BaseDao<NewsInfo> implements INewsInfoDao {
 		}
 
 		String countHQL = "select count(*) " + hql;
-		hql.append("order by t.create_time desc, t.startTime asc ");
+		hql.append("order by t.createTime desc, t.startTime asc ");
 
 		return this.findByJPQLWithPage(hql.toString(), countHQL, parameterMap, condition.getPageNo(),
 		        condition.getPageSize());

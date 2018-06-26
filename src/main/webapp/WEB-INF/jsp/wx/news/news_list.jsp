@@ -3,26 +3,33 @@
 <!DOCTYPE>
 <html>
 <head>
-<title>信息发布</title>
+<title>活动列表</title>
+<%@include file="/common/taglib.jsp"%>
 <jsp:include page="/common/_head.jsp"></jsp:include>
 </head>
 <body ontouchstart>
-	<header class='demos-header'>
-		<h1 class="demos-title">活动列表</h1>
-	</header>
-	
-	
-
-	<div class="weui-btn-area">
-		<a class="weui-btn weui-btn_primary" href="javascript:"
-			id="showTooltips">确定</a>
+	<div class="weui-panel__bd">
+		<c:forEach items="${results.resultList}" var="e">
+			<a href="${e.url }" class="weui-media-box weui-media-box_appmsg">
+				<div class="weui-media-box__hd">
+					<img src="../../images/activity_default.jpg" width="60px"
+						height="60px">
+				</div>
+				<div class="weui-media-box__bd">
+					<h4 class="weui-media-box__title">${e.title }</h4>
+					<p class="weui-media-box__desc weui-cell__ft">
+						<fmt:formatDate value="${e.modifyTime}"
+							pattern="yyyy-MM-dd" />
+					</p>
+				</div>
+			</a>
+		</c:forEach>
 	</div>
 	<jsp:include page="/common/_foot.jsp"></jsp:include>
 	<script>
-	$(function(){
-		
-		
-	});
+		$(function() {
+
+		});
 	</script>
 </body>
 </html>

@@ -23,7 +23,7 @@ public class MenuMain {
 		String baseOauthUrlEnd = "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 		
 		ViewButton vbt1 = new ViewButton();
-		vbt1.setUrl("https://weui.io");
+		vbt1.setUrl(baseOauthUrl + "https://leon.natappvip.cc/wx/news/toNewsList" + baseOauthUrlEnd);
 		vbt1.setName("最新活动");
 		vbt1.setType("view");
 		ViewButton vbt2 = new ViewButton();
@@ -37,29 +37,29 @@ public class MenuMain {
 		vbt3.setName("通讯录");
 		vbt3.setType("view");
 		ViewButton vbt4 = new ViewButton();
-		vbt4.setUrl("http://www.ssme.gov.cn/wechat/index.html#/首页/service-resource-list");
+		vbt4.setUrl(baseOauthUrl + "https://leon.natappvip.cc/wx/job/toJobList" + baseOauthUrlEnd);
 		vbt4.setName("招聘信息");
 		vbt4.setType("view");
 		ViewButton vbt5 = new ViewButton();
-		vbt5.setUrl("https://leon.natappvip.cc/jssdk_config.jsp");
+		vbt5.setUrl(baseOauthUrl + "https://leon.natappvip.cc/wx/job/toJobNeedList" + baseOauthUrlEnd);
 		vbt5.setName("求职信息");
 		vbt5.setType("view");
 		ViewButton vbt6 = new ViewButton();
-		vbt6.setUrl("https://leon.natappvip.cc/jssdk_config.jsp");
+		vbt6.setUrl(baseOauthUrl + "https://leon.natappvip.cc/wx/creator/toCreatorItemList" + baseOauthUrlEnd);
 		vbt6.setName("创业项目");
 		vbt6.setType("view");
 
 		ViewButton vbt7 = new ViewButton();
-		vbt7.setUrl("https://leon.natappvip.cc/jssdk_config.jsp");
+		vbt7.setUrl(baseOauthUrl + "https://leon.natappvip.cc/wx/vip/toVipCost" + baseOauthUrlEnd);
 		vbt7.setName("缴纳会费");
 		vbt7.setType("view");
 		ViewButton vbt8 = new ViewButton();
-		vbt8.setUrl("https://leon.natappvip.cc/jssdk_config.jsp");
+		vbt8.setUrl("https://weui.io");
 		vbt8.setName("会员列表");
 		vbt8.setType("view");
 		ViewButton vbt9 = new ViewButton();
 		vbt9.setUrl("https://leon.natappvip.cc/jssdk_config.jsp");
-		vbt9.setName("LIVE");
+		vbt9.setName("LIVE&AI");
 		vbt9.setType("view");
 
 		// 二级菜单
@@ -100,7 +100,7 @@ public class MenuMain {
 		JSONObject menujson = new JSONObject();
 		menujson.put("button", button);
 		System.out.println(menujson);
-		String accessToken = "11_gmaUQqBZlnnie2bI585V7C8H66O3GyUIJlGwx0woGS9_aspLgtHC3CKN3DoECneDJt0lMTnF4qXTQUugLiHeAls_RC_EX3i4OcwvpcqUweGNC454UNH17Yghc4gLZBcAEABPR";
+		String accessToken = "11_KOkTCsagHsKVFpCbgEGF3J79G3cxjV1rdCXRMTMqghZ42Df6HobmH5XMMp6XyRmbzA--bPh-damtCB2-XePMyNste1b8jxA48jVS5bOR27kUSQU3UD4LluO0uL73Gr7Cg8IVTTYqT9xoP1Y1ODFhABATIK";
 		String url = MENU_CREATE_URL + "?access_token=" + accessToken;
 
 		try {

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width" />
-<title>微信JS-SDK Demo</title>
+<title>开发测试-语音识别&AI、微信JS-SDK Demo </title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/jssdkdemo.css">
 <meta name="viewport"

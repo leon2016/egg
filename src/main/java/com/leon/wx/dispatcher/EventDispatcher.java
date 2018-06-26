@@ -45,7 +45,7 @@ public class EventDispatcher {
 			try {
 				WxUserInfo userinfo = WxUserInfoUtils.getUserInfoByOpenid(openid);
 				Article article = new Article();
-				article.setDescription("欢迎来到上海校友会APP！"); // 图文消息的描述
+				article.setDescription("大佬们说，我们应该有一个APP来实现校友们资源共享，互助实现梦想。于是，利用三天工作之余，码出了雏形。欢迎来到上海校友会APP-测试版！地基已经打牢，房型功能就靠大家了，时间有限，只做最有价值的东西，如有建议或bug，请加微信girl5201314z告知，期待你的加入！（注：由于目前是以个人计算机作为服务器，上班下班时段偶尔会无法响应，因为没网..囧。）"); // 图文消息的描述
 				article.setPicUrl(userinfo.getHeadimgurl()); // 图文消息图片地址
 				article.setTitle("尊敬的：" + userinfo.getNickname() + ",你好！"); // 图文消息标题
 				article.setUrl("https://www.baidu.com"); // 图文 url 链接
