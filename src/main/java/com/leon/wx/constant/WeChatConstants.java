@@ -8,9 +8,9 @@ import com.leon.wx.util.WeChatTask;
 public class WeChatConstants {
 	public static final String site_url = "https://api.weixin.qq.com/";
 	// 正式环境-leon
-	// public static String APP_ID = "wxdf8387e2afcf8f85";
-	// public static String APP_SECRET = "dca5644591bf0b351a988b90ea283612";
-	// public static String TOKEN = "leon";
+//	 public static String APP_ID = "wxdf8387e2afcf8f85";
+//	 public static String APP_SECRET = "dca5644591bf0b351a988b90ea283612";
+//	 public static String TOKEN = "leon";
 	// 测试号-leon
 	public static final String APP_ID = "wx1c6e85d9d1614619";
 	public static final String APP_SECRET = "ba670721d003c4c302bdbaa75e54f936";
@@ -22,9 +22,9 @@ public class WeChatConstants {
 	// public static String TOKEN = "leon";
 
 	// // 测试环境-wanda
-	// public static String APP_ID = "wx64f38e83158c675e";
-	// public static String APP_SECRET = "3e278755f71c314d7b7c7b3c5d0762a4";
-	// public static String TOKEN = "leon";
+//	 public static String APP_ID = "wx64f38e83158c675e";
+//	 public static String APP_SECRET = "3e278755f71c314d7b7c7b3c5d0762a4";
+//	 public static String TOKEN = "leon";
 
 	public static final String TIMESTAMP = "timestamp";
 	public static final String ACCESS_TOKEN = "access_token";

@@ -12,6 +12,8 @@ public class VoiceMessage extends BaseMessage {
 	private String MediaId;
 	// 语音格式
 	private String Format;
+	// 语言识别结果
+	private String Recognition;
 
 	public String getMediaId() {
 		return MediaId;
@@ -28,4 +30,13 @@ public class VoiceMessage extends BaseMessage {
 	public void setFormat(String format) {
 		Format = format;
 	}
+
+	public String getRecognition() {
+		return Recognition;
+	}
+
+	public void setRecognition(String recognition) {
+		Recognition = recognition;
+	}
+	
 }

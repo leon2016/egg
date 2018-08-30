@@ -5,8 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.log4j.Logger;
 
 import com.leon.wx.message.resp.Article;
@@ -27,11 +25,12 @@ public class MsgDispatcher {
 
 	public static String processMessage(Map<String, String> map) {
 
+		String msgType = map.get("MsgType");// 消息类型
 		String openid = map.get("FromUserName"); // 用户 openid
 		String mpid = map.get("ToUserName"); // 公众号原始 ID
-		logger.debug("openId=" + openid + ", mpId=" + mpid);
+		logger.debug("msgType="+msgType+", openId=" + openid + ", mpId=" + mpid);
 
-		if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) { // 文本消息
+		if (MessageUtil.REQ_MESSAGE_TYPE_TEXT.equals(msgType)) { // 文本消息
 			logger.debug("==============这是文本消息！");
 
 			// 普通文本消息
@@ -41,13 +40,18 @@ public class MsgDispatcher {
 			txtmsg.setCreateTime(new Date().getTime());
 			txtmsg.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
 			txtmsg.setContent("你好，这里是万刚个人账号！");
-			String result = MessageUtil.textMessageToXml(txtmsg);
+			String result = MessageUtil.messageToXml(txtmsg);
 			logger.debug("xml=" + result);
 			return result;
 
-		} else if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)) { // 语音消息
+		} else if (MessageUtil.REQ_MESSAGE_TYPE_VOICE.equals(msgType)) { // 语音消息
 			logger.debug("==============这是语音消息！");
-		} else if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) { // 图片消息
+			String mediaId = map.get("MediaId");
+			String format = map.get("Format");
+			String recognition = map.get("Recognition");
+			logger.debug("语音内容："+recognition);
+			// TODO 处理语言请求
+		} else if (MessageUtil.REQ_MESSAGE_TYPE_IMAGE.equals(msgType)) { // 图片消息
 			logger.debug("==============这是图片消息！");
 
 			// 对图文消息
@@ -57,7 +61,7 @@ public class MsgDispatcher {
 			newmsg.setCreateTime(new Date().getTime());
 			newmsg.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_NEWS);
 
-			if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) { // 图片消息
+			if (MessageUtil.REQ_MESSAGE_TYPE_IMAGE.equals(msgType)) { // 图片消息
 				logger.debug("==============这是图片消息！");
 				Article article = new Article();
 				article.setDescription("这是图文消息 1"); // 图文消息的描述
@@ -83,16 +87,16 @@ public class MsgDispatcher {
 				list.add(article3);
 				newmsg.setArticleCount(list.size());
 				newmsg.setArticles(list);
-				String result = MessageUtil.newsMessageToXml(newmsg);
+				String result = MessageUtil.messageToXml(newmsg);
 				logger.debug("xml=" + result);
 				return result;
 			}
 
-		} else if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_LINK)) { // 链接消息
+		} else if (MessageUtil.REQ_MESSAGE_TYPE_LINK.equals(msgType)) { // 链接消息
 			logger.debug("==============这是链接消息！");
-		} else if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_LOCATION)) { // 位置消息
+		} else if (MessageUtil.REQ_MESSAGE_TYPE_LOCATION.equals(msgType)) { // 位置消息
 			logger.debug("==============这是位置消息！");
-		} else if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_VIDEO)) { // 视频消息
+		} else if (MessageUtil.REQ_MESSAGE_TYPE_VIDEO.equals(msgType)) { // 视频消息
 			logger.debug("==============这是视频消息！");
 		} else {
 			logger.debug("==============其他消息，MsgType=" + map.get("MsgType"));

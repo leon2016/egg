@@ -1,12 +1,10 @@
 package com.leon.wx.controller;
 
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -23,12 +21,11 @@ import com.leon.wx.dispatcher.MsgDispatcher;
 import com.leon.wx.util.JsSdkConfig;
 import com.leon.wx.util.MessageUtil;
 import com.leon.wx.util.WechatUtils;
-import com.leon.wx.util.WxUserInfoUtils;
 
 @Controller
 @RequestMapping(value = "/wx")
-public class WeixinController {
-	private static Logger logger = Logger.getLogger(WeixinController.class);
+public class WeChatController {
+	private static Logger logger = Logger.getLogger(WeChatController.class);
 
 	/**
 	 * security get请求-验证签名

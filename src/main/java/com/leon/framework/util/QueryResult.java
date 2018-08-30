@@ -40,7 +40,7 @@ public class QueryResult<T> {
 			return;
 		this.currPageNo = Integer.valueOf(firstResultNo.intValue() / this.pageSize.intValue());
 		if (firstResultNo.intValue() % this.pageSize.intValue() > 0) {
-			QueryResult tmp43_42 = this;
+			QueryResult<T> tmp43_42 = this;
 			tmp43_42.currPageNo = Integer.valueOf(tmp43_42.currPageNo.intValue() + 1);
 		}
 	}
@@ -48,7 +48,7 @@ public class QueryResult<T> {
 	private void calculatePageCount() {
 		this.pageCount = Long.valueOf(this.totalRecord.longValue() / this.pageSize.intValue());
 		if (this.totalRecord.longValue() % this.pageSize.intValue() != 0L) {
-			QueryResult tmp45_44 = this;
+			QueryResult<T> tmp45_44 = this;
 			tmp45_44.pageCount = Long.valueOf(tmp45_44.pageCount.longValue() + 1L);
 		}
 	}
@@ -80,8 +80,9 @@ public class QueryResult<T> {
 	public QueryResult() {
 	}
 
+	@SuppressWarnings("unchecked")
 	public QueryResult(List<T> resultList, long totalRecord, int currPageNo, int pageSize) {
-		this.resultList = ((resultList == null) ? new ArrayList() : resultList);
+		this.resultList = (List<T>) ((resultList == null) ? new ArrayList<Object>() : resultList);
 		this.totalRecord = Long.valueOf(totalRecord);
 		this.currPageNo = Integer.valueOf(currPageNo);
 		this.pageSize = Integer.valueOf(pageSize);

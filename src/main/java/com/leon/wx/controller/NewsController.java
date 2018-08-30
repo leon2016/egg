@@ -1,11 +1,8 @@
 package com.leon.wx.controller;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -20,11 +17,9 @@ import com.leon.framework.util.QueryResult;
 import com.leon.wx.bo.NewsInfo;
 import com.leon.wx.condition.BaseCondition;
 import com.leon.wx.constant.GlobalConstant;
-import com.leon.wx.constant.WeChatConstants;
 import com.leon.wx.model.WechatOauth2Token;
 import com.leon.wx.model.WxUserInfo;
 import com.leon.wx.service.INewsInfoService;
-import com.leon.wx.util.MessageUtil;
 import com.leon.wx.util.Oauth2TokenUtil;
 import com.leon.wx.util.WxUserInfoUtils;
 

@@ -7,9 +7,8 @@ package com.leon.wx.menu;
  * @author wangang
  * @date 2018-06-01
  */
-public class ViewButton {
+public class ViewButton extends Button {
 	private String type;
-	private String name;
 	private String url;
 
 	public String getType() {
@@ -18,14 +17,6 @@ public class ViewButton {
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getUrl() {

@@ -28,13 +28,13 @@ import com.thoughtworks.xstream.io.xml.XppDriver;
 /**
  * ClassName: MessageUtil
  * 
- * @Description: 消息工具类
+ * @Description: 消息处理工具类（基于dom4j读写xml和XStream实现对象xml转换）
  * @author wangang
  * @date 2018-06-01
  */
 public class MessageUtil {
 
-	/**
+	/**----------------------------响应消息-------------------------------
 	 * 返回消息类型：文本
 	 */
 	public static final String RESP_MESSAGE_TYPE_TEXT = "text";
@@ -63,8 +63,9 @@ public class MessageUtil {
 	 * 返回消息类型：视频
 	 */
 	public static final String RESP_MESSAGE_TYPE_Video = "video";
+	
 
-	/**
+	/**---------------------------------请求消息---------------------------------
 	 * 请求消息类型：文本
 	 */
 	public static final String REQ_MESSAGE_TYPE_TEXT = "text";
@@ -94,7 +95,7 @@ public class MessageUtil {
 	 */
 	public static final String REQ_MESSAGE_TYPE_VIDEO = "video";
 
-	/**
+	/**------------------------------------事件----------------------------------------
 	 * 请求消息类型：推送
 	 */
 	public static final String REQ_MESSAGE_TYPE_EVENT = "event";
@@ -164,80 +165,7 @@ public class MessageUtil {
 	}
 
 	/**
-	 * @Description: 文本消息对象转换成 xml
-	 * @param @param
-	 *            textMessage
-	 * @param @return
-	 * 
-	 */
-	public static String textMessageToXml(TextRespMessage textRespMessage) {
-		xstream.alias("xml", textRespMessage.getClass());
-		return xstream.toXML(textRespMessage);
-	}
-
-	/**
-	 * @Description: 图文消息对象转换成 xml
-	 * @param @param
-	 *            newsMessage
-	 * @param @return
-	 * 
-	 */
-	public static String newsMessageToXml(NewsMessage newsMessage) {
-		xstream.alias("xml", newsMessage.getClass());
-		xstream.alias("item", new Article().getClass());
-		return xstream.toXML(newsMessage);
-	}
-
-	/**
-	 * @Description: 图片消息对象转换成 xml
-	 * @param @param
-	 *            imageMessage
-	 * @param @return
-	 * 
-	 */
-	public static String imageMessageToXml(ImageRespMessage imageRespMessage) {
-		xstream.alias("xml", imageRespMessage.getClass());
-		return xstream.toXML(imageRespMessage);
-	}
-
-	/**
-	 * @Description: 语音消息对象转换成 xml
-	 * @param @param
-	 *            voiceMessage
-	 * @param @return
-	 * 
-	 */
-	public static String voiceMessageToXml(VoiceMessage voiceMessage) {
-		xstream.alias("xml", voiceMessage.getClass());
-		return xstream.toXML(voiceMessage);
-	}
-
-	/**
-	 * @Description: 视频消息对象转换成 xml
-	 * @param @param
-	 *            videoMessage
-	 * @param @return
-	 * 
-	 */
-	public static String videoMessageToXml(VideoMessage videoMessage) {
-		xstream.alias("xml", videoMessage.getClass());
-		return xstream.toXML(videoMessage);
-	}
-
-	/**
-	 * @Description: 音乐消息对象转换成 xml
-	 * @param @param
-	 *            musicMessage
-	 * @param @return
-	 * 
-	 */
-	public static String musicMessageToXml(MusicMessage musicMessage) {
-		xstream.alias("xml", musicMessage.getClass());
-		return xstream.toXML(musicMessage);
-	}
-
-	/**
-	 * 对象到 xml 的处理
+	 * 扩展XStream使其支持CDATA
 	 */
 	private static XStream xstream = new XStream(new XppDriver() {
 		public HierarchicalStreamWriter createWriter(Writer out) {
@@ -262,4 +190,78 @@ public class MessageUtil {
 			};
 		}
 	});
+
+	/**
+	 * @Description: 文本消息对象转换成 xml
+	 * @param @param
+	 *            textMessage
+	 * @param @return
+	 * 
+	 */
+	public static String messageToXml(TextRespMessage textRespMessage) {
+		xstream.alias("xml", textRespMessage.getClass());
+		return xstream.toXML(textRespMessage);
+	}
+
+	/**
+	 * @Description: 图文消息对象转换成 xml
+	 * @param @param
+	 *            newsMessage
+	 * @param @return
+	 * 
+	 */
+	public static String messageToXml(NewsMessage newsMessage) {
+		xstream.alias("xml", newsMessage.getClass());
+		xstream.alias("item", new Article().getClass());
+		return xstream.toXML(newsMessage);
+	}
+
+	/**
+	 * @Description: 图片消息对象转换成 xml
+	 * @param @param
+	 *            imageMessage
+	 * @param @return
+	 * 
+	 */
+	public static String messageToXml(ImageRespMessage imageRespMessage) {
+		xstream.alias("xml", imageRespMessage.getClass());
+		return xstream.toXML(imageRespMessage);
+	}
+
+	/**
+	 * @Description: 语音消息对象转换成 xml
+	 * @param @param
+	 *            voiceMessage
+	 * @param @return
+	 * 
+	 */
+	public static String messageToXml(VoiceMessage voiceMessage) {
+		xstream.alias("xml", voiceMessage.getClass());
+		return xstream.toXML(voiceMessage);
+	}
+
+	/**
+	 * @Description: 视频消息对象转换成 xml
+	 * @param @param
+	 *            videoMessage
+	 * @param @return
+	 * 
+	 */
+	public static String messageToXml(VideoMessage videoMessage) {
+		xstream.alias("xml", videoMessage.getClass());
+		return xstream.toXML(videoMessage);
+	}
+
+	/**
+	 * @Description: 音乐消息对象转换成 xml
+	 * @param @param
+	 *            musicMessage
+	 * @param @return
+	 * 
+	 */
+	public static String messageToXml(MusicMessage musicMessage) {
+		xstream.alias("xml", musicMessage.getClass());
+		return xstream.toXML(musicMessage);
+	}
+
 }

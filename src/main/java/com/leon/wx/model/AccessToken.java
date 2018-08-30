@@ -1,4 +1,4 @@
-package com.leon.wx.util;
+package com.leon.wx.model;
 
 /**
  * access_token
